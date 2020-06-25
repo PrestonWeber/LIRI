@@ -48,7 +48,7 @@ var runUserCommand = function (command, input) {
 }
 
 var concertResults = function (input) {
-    axios.get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp")
+    axios.get(`https://rest.bandsintown.com/artists/${input}/events?app_id=codingbootcamp`)
         .then(function (response) {
             for (i = 0; i < response.data.length; i++) {
                 console.table([
@@ -71,7 +71,7 @@ var concertResults = function (input) {
 
 function movieResults(input) {
     
-    axios.get("http://www.omdbapi.com/?apikey=trilogy&t=" + input)
+    axios.get(`http://www.omdbapi.com/?apikey=trilogy&t=${input}`)
     .then(function(response) {
         
             seperator();
@@ -107,7 +107,7 @@ var songResults = function(input) {
         
     }, function(err, data) {
         if (err) {
-            return console.log("Error occured: " + err);
+            return console.log(`Error occurred: ${err}`);
         }else{
             var info = data.tracks.items[0];
            console.table([{
@@ -124,7 +124,7 @@ var songResults = function(input) {
 
 
 function followCommand(){
-    fs.readFile(__dirname + "/random.txt", function(err, data) {
+    fs.readFile(`${__dirname}/random.txt`, function(err, data) {
         if (err) throw err;
         console.log(data.toString());
         var command = data.toString().split(",");
